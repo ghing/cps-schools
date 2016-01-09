@@ -1,10 +1,10 @@
-import csv
+import unicodecsv
 import os.path
 
 def load_crosswalk(path, from_field, to_field):
     crosswalk = {}
     with open(path) as f:
-        reader = csv.DictReader(f)
+        reader = unicodecsv.DictReader(f)
         for row in reader:
             crosswalk[row[from_field]] = row[to_field]
 

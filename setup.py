@@ -25,6 +25,7 @@ setup(
         'invoke',
         'requests',
         'xlrd',
+        'unicodecsv',
     ],
     tests_require=[
         'nose',

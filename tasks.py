@@ -1,4 +1,4 @@
-import csv
+import unicodecsv
 import os.path
 import sys
 
@@ -42,8 +42,19 @@ def load(data_directory, database="postgresql://localhost:5432/cps_schools",
 @task
 def generate_name_to_id_crosswalk(database="postgresql://localhost:5432/cps_schools"):
     db = dataset.connect(database)    
-    query = """SELECT DISTINCT school_id, name FROM schools"""
-    writer = csv.DictWriter(sys.stdout, fieldnames=(('school_id', 'name')))
+    query = """SELECT DISTINCT school_id, name FROM schools WHERE school_id
+    != ''"""
+    writer = unicodecsv.DictWriter(sys.stdout, fieldnames=(('school_id', 'name')))
     writer.writeheader()
+    for row in db.query(query):
+        writer.writerow(row)
+
+    query = """SELECT DISTINCT school_id, name_full as name FROM schools WHERE
+    name_full IS NOT NULL AND school_id != ''"""    
+    for row in db.query(query):
+        writer.writerow(row)
+
+    query = """SELECT DISTINCT school_id, name_2 as name FROM schools WHERE
+    name_2 IS NOT NULL AND school_id != ''"""    
     for row in db.query(query):
         writer.writerow(row)
