@@ -1,10 +1,14 @@
-import unicodecsv
 import os.path
+import sys
+if sys.version_info[0] == 2:
+    import unicodecsv as csv
+else:
+    import csv
 
 def load_crosswalk(path, from_field, to_field):
     crosswalk = {}
     with open(path) as f:
-        reader = unicodecsv.DictReader(f)
+        reader = csv.DictReader(f)
         for row in reader:
             crosswalk[row[from_field]] = row[to_field]
 
