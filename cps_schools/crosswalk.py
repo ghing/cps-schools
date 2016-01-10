@@ -16,3 +16,6 @@ def load_crosswalk(path, from_field, to_field):
 
 id_to_name = load_crosswalk(os.path.join(os.path.dirname(__file__),
     'data', 'name_to_id_crosswalk.csv'), 'name', 'school_id')
+
+cps_school_id_to_rcdts_id = load_crosswalk(os.path.join(os.path.dirname(__file__),
+    'data', 'cps_school_id_to_rcdts_id.csv'), 'school_id', 'rcdts_id')

@@ -57,7 +57,7 @@ class Schools20132014Datasource(BaseDatasource):
             ('ZIP', 'zip', str),
             ('NCES ID', 'nces_id', str),
             ('CPS Unit', 'cps_unit', str),
-            ('ISBE ID', 'rcts_id', str),
+            ('ISBE ID', 'rcdts_id', str),
             ('Governance', 'governance', str),
             ('Grade Structure', 'grade_category', str),
             ('Attending Grades', 'grades', str),
